@@ -1,0 +1,32 @@
+<include file="Common:header" />
+<h3>禁止IP</h3>
+<form action='<{:SITE_URL}>/admin.php?s=/Forbidip/save' method="POST">
+<table class="table" style="margin:5px 0 20px 0">
+<tr>
+    <td width="90px">&nbsp;</td>
+    <td width="250px"><b>禁止的IP</b></td>
+    <td><b>终止时间</b>&nbsp;&nbsp;&nbsp;填写0则表示永久禁止,正确时间格式2011-01-05</td>
+</tr>
+<php>foreach($data as $val){</php>
+<tr>
+    <td><input type="checkbox" name="delid[]" value="<{$val[ip]}>" class="checkbox"></td>
+    <td><input type="text" name="ips[<{$val[ip]}>]" value="<{$val[ip]}>" class="txt_input" style="width:120px"></td>
+    <td><input type="text" name="times[<{$val[ip]}>]" value="<php>if($val[lasttime]==0){</php>0<php>}else{</php><{:date('Y-m-d',$val[lasttime])}><php>}</php>" class="txt_input" style="width:120px"></td>
+</tr>
+<php>}</php>
+<tr id="addbtn">
+    <td>&nbsp;</td>
+    <td colspan="3"><a href="javascript:void(0)" onclick="addips()">+ 添加</a></td>
+</tr>
+<tr>
+    <td><input type="checkbox" onclick="CheckAll('delid', 'chkall')" id="chkall" name="chkall" class="checkbox"> 删除?</td>
+    <td colspan="3"><input type="submit" class="button1" value="提交保存"></td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">
+function addips() {
+    $('#addbtn').before('<tr><td>&nbsp;</td><td><input type="text" name="n_ip[]" value="0.0.0.0" class="txt_input" style="width:120px"></td><td><input type="text" name="n_time[]" class="txt_input" style="width:120px" value="<{:date(\'Y-m-d\',time()+604800)}>"></td></tr>');
+}
+</script>
+<include file="Common:foot" />

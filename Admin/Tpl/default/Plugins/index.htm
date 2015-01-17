@@ -1,0 +1,44 @@
+<include file="Common:header" />
+<div class="infomation" style="color:red"><b>说明：</b>请慎重安装第三方微博应用插件，安装第三方应用插件可能导致数据丢失或者其他安全隐患。过多的安装插件可能导致程序运行缓慢以及效率低下。</div><br/>
+<h3>添加应用插件</h3>
+<table class="table" style="margin:5px 0 20px 0">
+<tr>
+    <td width="150px">名称</td>
+    <td width="120px">标识符</td>
+	<td width="120px">类型</td>
+    <td width="120px">开发者</td>
+    <td width="100px">版本</td>
+	<td width="100px">平台版本</td>
+    <td width="170px" style="text-indent:0px">应用插件介绍</td>
+    <td>&nbsp;</td>
+</tr>
+<php>foreach($plugins as $key=>$val){$type=$val[type]=='app'?'应用':'插件';</php>
+    <tr>
+        <td><b><{$val[name]}></b></td>
+        <td><{$key}></td>
+		<td><{:$val[type]=='app'?'<font color="#ff0000">应用</font>':'插件'}></td>
+        <td>
+        <php>if($val[weburi]){</php>
+            <a href="<{$val[weburi]}>" target="_blank"><{$val[author]}></a>
+        <php>}else{</php>
+            <{$val[author]}>
+        <php>}</php>
+        </td>
+        <td><{$val[version]}></td>
+		<td><{$val[etversion]}></td>
+        <td style="text-indent:0px"><div style="white-space:normal;word-wrap:break-word;_overflow:hidden;width:170px"><{$val[info]}></div></td>
+        <td>
+        <php>if(!versionCompare($val[etversion],ET_VESION)){</php>
+            <a href='##' onclick="if(confirm('该<{$type}>所适用的EasyTalk版本与目前的不符合，安装后将导致功能无法使用，是否确定继续安装？')){window.location.href='<{:SITE_URL}>/admin.php?s=/Plugins/install/appname/<{$key}>'}">安装<{$type}></a>
+        <php>}else{</php> 
+            <a href='<{:SITE_URL}>/admin.php?s=/Plugins/install/appname/<{$key}>'>安装<{$type}></a>
+        <php>}</php>
+        | <a href="##" onclick="if(confirm('是否确定删除该<{$type}>的所有文件？')){window.location.href='<{:SITE_URL}>/admin.php?s=/Plugins/delapp/appname/<{$key}>'}">删除<{$type}></a>
+		</td>
+    </tr>
+<php>}</php>
+</table>
+<php>if(!$plugins){</php>
+<div style="margin-left:20px">您还没有上传应用插件，应用插件项目请上传至“/Apps”目录下！</div>
+<php>}</php>
+<include file="Common:foot" />

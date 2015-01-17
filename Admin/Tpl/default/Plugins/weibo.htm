@@ -1,0 +1,182 @@
+<include file="Common:header" />
+<style>
+.settitle{margin-left:20px;font-size:12px;font-weight:normal;color:#555}
+</style>
+<div class="infomation"><b>说明：</b>开启微博同步与一键登录功能请确定您的服务器支持curl模块。并进入相应开放平台申请APIkey以及Secretkey。</div><br/>
+<php>if (function_exists('curl_init')) {</php>
+<form action='<{:SITE_URL}>/admin.php?s=/Setting/webset' method="POST">
+<h3><img src="<{:__PUBLIC__}>/images/weibo/sinaweibo.png" width="20px">&nbsp;&nbsp;新浪微博设置<span class="settitle">新浪开放平台地址：<a href="http://open.weibo.com" target="_blank">http://open.weibo.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][sinaweiboopen]" value="1" <php>if($site[weiboopen]['sinaweiboopen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][sinaweiboopen]" value="0" <php>if($site[weiboopen]['sinaweiboopen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info">● 支持一键登录与微博同步</td>
+</tr>
+<tr>
+    <td>App Key</td>
+    <td><input type="text" name="site[weibodata][sinaappk]" class="txt_input" value="<{$site[weibodata]['sinaappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>App Secret</td>
+    <td><input type="text" name="site[weibodata][sinaapps]" class="txt_input" value="<{$site[weibodata]['sinaapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=sinaweibo_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/qqweibo.png" width="20px">&nbsp;&nbsp;腾讯微博设置<span class="settitle">腾讯微博开放平台地址：<a href="http://open.t.qq.com" target="_blank">http://open.t.qq.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][qqweiboopen]" value="1" <php>if($site[weiboopen]['qqweiboopen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][qqweiboopen]" value="0" <php>if($site[weiboopen]['qqweiboopen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info">● 支持一键登录与微博同步</td>
+</tr>
+<tr>
+    <td>App Key</td>
+    <td><input type="text" name="site[weibodata][qqappk]" class="txt_input" value="<{$site[weibodata]['qqappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>App Secret</td>
+    <td><input type="text" name="site[weibodata][qqapps]" class="txt_input" value="<{$site[weibodata]['qqapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=qqweibo_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/qzone.png" width="20px">&nbsp;&nbsp;QQ号码一键登陆<span class="settitle">QQ开放平台地址：<a href="http://connect.qq.com/" target="_blank">http://connect.qq.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][qqloginopen]" value="1" <php>if($site[weiboopen]['qqloginopen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][qqloginopen]" value="0" <php>if($site[weiboopen]['qqloginopen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>APP ID</td>
+    <td><input type="text" name="site[weibodata][qqloginappk]" class="txt_input" value="<{$site[weibodata]['qqloginappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>KEY</td>
+    <td><input type="text" name="site[weibodata][qqloginapps]" class="txt_input" value="<{$site[weibodata]['qqloginapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=qzone_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/renren.png" width="20px">&nbsp;&nbsp;人人帐号一键登陆<span class="settitle">人人开放平台地址：<a href="http://dev.renren.com/" target="_blank">http://dev.renren.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][renrenopen]" value="1" <php>if($site[weiboopen]['renrenopen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][renrenopen]" value="0" <php>if($site[weiboopen]['renrenopen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>API Key</td>
+    <td><input type="text" name="site[weibodata][renrenappk]" class="txt_input" value="<{$site[weibodata]['renrenappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>Secret Key</td>
+    <td><input type="text" name="site[weibodata][renrenapps]" class="txt_input" value="<{$site[weibodata]['renrenapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=renren_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/douban.png" width="20px">&nbsp;&nbsp;豆瓣帐号一键登陆<span class="settitle">豆瓣开放平台地址：<a href="http://developers.douban.com/" target="_blank">http://developers.douban.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][doubanopen]" value="1" <php>if($site[weiboopen]['doubanopen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][doubanopen]" value="0" <php>if($site[weiboopen]['doubanopen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>API Key</td>
+    <td><input type="text" name="site[weibodata][doubanappk]" class="txt_input" value="<{$site[weibodata]['doubanappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>Secret Key</td>
+    <td><input type="text" name="site[weibodata][doubanapps]" class="txt_input" value="<{$site[weibodata]['doubanapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=douban_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/facebook.png" width="20px">&nbsp;&nbsp;Facebook帐号一键登陆<span class="settitle">Facebook开放平台地址：<a href="http://developer.facebook.com/" target="_blank">http://developer.facebook.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][fbpen]" value="1" <php>if($site[weiboopen]['fbpen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][fbpen]" value="0" <php>if($site[weiboopen]['fbpen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>API Key</td>
+    <td><input type="text" name="site[weibodata][fbappk]" class="txt_input" value="<{$site[weibodata]['fbappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>Secret Key</td>
+    <td><input type="text" name="site[weibodata][fbapps]" class="txt_input" value="<{$site[weibodata]['fbapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=facebook_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<h3><img src="<{:__PUBLIC__}>/images/weibo/twitter.png" width="20px">&nbsp;&nbsp;twitter帐号一键登陆<span class="settitle">twitter开放平台地址：<a href="http://developer.twitter.com/" target="_blank">http://developer.twitter.com</a></span></h3>
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">是否开启</td>
+    <td width="330px"><input type="radio" name="site[weiboopen][twitteropen]" value="1" <php>if($site[weiboopen]['twitteropen']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[weiboopen][twitteropen]" value="0" <php>if($site[weiboopen]['twitteropen']==0){</php>checked<php>}</php>> 关闭</td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>API Key</td>
+    <td><input type="text" name="site[weibodata][twappk]" class="txt_input" value="<{$site[weibodata]['twappk']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>Secret Key</td>
+    <td><input type="text" name="site[weibodata][twapps]" class="txt_input" value="<{$site[weibodata]['twapps']}>"></td>
+    <td class="info"></td>
+</tr>
+<tr>
+    <td>回调地址</td>
+    <td><{:SITE_URL}>/?m=api&a=twitter_login</td>
+    <td class="info"></td>
+</tr>
+</table>
+<input type="hidden" name="reurl" value="Plugins/weibo">
+<input type="submit" class="button1 submit" value="保存提交">
+</form>
+<php>}else{</php>
+<img src="<{:__PUBLIC__}>/images/common/signup-wrong.png">&nbsp;&nbsp;很抱歉，您的服务器不支持CURL模块，请开启后再进行设置！
+<php>}</php>
+<include file="Common:foot" />

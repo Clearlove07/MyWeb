@@ -1,0 +1,35 @@
+<include file="Common:header" />
+<h3>表情列表</h3>
+<div class="infomation"><b>说明：</b>表情图片请放置于Public/images/emotion/目录下。</div>
+<form action='<{:SITE_URL}>/admin.php?s=/Emotion/save' method="POST">
+<table class="table" style="margin:5px 0 20px 0">
+<tr>
+    <td width="70px">&nbsp;</td>
+    <td width="60px">预览</td>
+    <td width="150px">标识符</td>
+    <td>图片名</td>
+</tr>
+<php>foreach($content as $val){</php>
+    <tr>
+        <td><input type="checkbox" name="delid[]" class="checkbox" value="<{$val[id]}>"></td>
+        <td><img src="<{:__PUBLIC__}>/images/emotion/<{$val['url']}>" style="width:20px;height:20px"></td>
+        <td><input type="text" name="ident[<{$val[id]}>]" value="<{$val['identifier']}>" class="txt_input" style="width:120px"></td>
+        <td><input type="text" name="url[<{$val[id]}>]" value="<{$val['url']}>" class="txt_input" style="width:120px"></td>
+    </tr>
+<php>}</php>
+<tr id="addbtn">
+    <td>&nbsp;</td>
+    <td colspan="3"><a href="javascript:void(0)" onclick="addemotion()">+ 添加</a></td>
+</tr>
+<tr>
+    <td><input type="checkbox" onclick="CheckAll('delid', 'chkall')" id="chkall" name="chkall" class="checkbox"> 删除?</td>
+    <td colspan="3"><input type="submit" class="button1" value="提交保存"></td>
+</tr>
+</table>
+</form>
+<script type="text/javascript">
+function addemotion() {
+    $('#addbtn').before('<tr><td>&nbsp;</td><td>&nbsp;</td><td><input type="text" name="n_ident[]" value="" class="txt_input" style="width:120px"></td><td><input type="text" name="n_url[]" value="" class="txt_input" style="width:120px"></td></tr>');
+}
+</script>
+<include file="Common:foot" />

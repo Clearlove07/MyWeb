@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'name', 2 => 'iconurl', 3 => 'titleurl', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'smallint(6)', 'name' => 'varchar(30)', 'iconurl' => 'varchar(200)', 'titleurl' => 'varchar(200)', ), ); ?>

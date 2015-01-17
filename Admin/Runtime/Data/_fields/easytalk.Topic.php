@@ -1,0 +1,2 @@
+<?php
+return array ( 0 => 'id', 1 => 'topicname', 2 => 'topictimes', 3 => 'follownum', 4 => 'tuijian', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(10)', 'topicname' => 'varchar(20)', 'topictimes' => 'smallint(6)', 'follownum' => 'int(10)', 'tuijian' => 'tinyint(1)', ), ); ?>

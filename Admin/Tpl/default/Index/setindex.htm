@@ -1,0 +1,96 @@
+<include file="Common:header" />
+<script type="text/javascript">
+$(document).ready(function(){
+	doupdate();
+});
+</script>
+<table class="table" border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr>
+		<td valign="top" width="70%" style="padding-right:20px">
+            <h3>系统信息</h3>
+            <table class="table" border="0" width="100%">
+            <tr>
+                <td width="120px">EasyTalk版本：</td>
+                <td>EasyTalk <{:ET_VESION}> Release <{:ET_RELEASE}></td>
+            </tr>
+            <tr>
+                <td>操作系统：</td>
+                <td><{$serverinfo}></td>
+            </tr>
+			<tr>
+                <td>服务器软件：</td>
+                <td><{$_SERVER['SERVER_SOFTWARE']}></td>
+            </tr>
+			<tr>
+                <td>PHP版本：</td>
+                <td><{:PHP_VERSION}></td>
+            </tr>
+            <tr>
+                <td>Mysql版本：</td>
+                <td><{$dbversion}></td>
+            </tr>
+            <tr>
+                <td>数据库尺寸：</td>
+                <td><{$dbsize}></td>
+            </tr>
+			<tr>
+                <td>上传文件限制：</td>
+                <td><{:@ini_get('file_uploads') ? ini_get('upload_max_filesize') :'unknown'}></td>
+            </tr>
+			<tr>
+				<td>授权类型：</td>
+                <td id="easytalk_authtype">&nbsp;</td>
+            </tr>
+			<tr>
+				<td>序列号：</td>
+                <td id="easytalk_sn">&nbsp;</td>
+            </tr>
+			<tr id="isnewversion" style="display:none;font-weight:bold">
+				<td>有新版本：</td>
+                <td id="newversion">&nbsp;</td>
+            </tr>
+            </table>
+            <br/>
+            <h3>全站统计</h3>
+            <table class="table" border="0" width="100%">
+            <tr>
+                <td width="120px">总注册人数：</td>
+                <td><{:intval($tjdata['ppcount'])}> 人</td>
+            </tr>
+            <tr>
+                <td>注册人数：</td>
+                <td>今日注册：<{:intval($tjdata['tdreg'])}> 人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨日注册：<{:intval($tjdata['ytdreg'])}> 人</td>
+            </tr>
+            <tr>
+                <td>活跃人数：</td>
+                <td>今日活跃：<{:intval($tjdata['tdlogin'])}> 人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昨日活跃：<{:intval($tjdata['ytdlogin'])}> 人</td>
+            </tr>
+            </table>
+			<br/>
+			<h3>EasyTalk开发团队</h3>
+            <table class="table" border="0" width="100%">
+            <tr>
+				<td width="120px">版权所有：</td>
+                <td>兰州乐游网络科技有限责任公司</td>
+            </tr>
+            <tr>
+				<td>总 策 划：</td>
+                <td>郑君毅</td>
+            </tr>
+			<tr>
+				<td>开发与支持团队：</td>
+                <td>郑君毅、李吉、王波挺</td>
+            </tr>
+            <tr>
+				<td>官方网站：</td>
+                <td><a href="http://www.nextsns.com" target="_blank">http://www.nextsns.com</a></td>
+            </tr>
+			<tr>
+				<td>官方论坛：</td>
+                <td><a href="http://www.nextsns.com/bbs" target="_blank">http://www.nextsns.com/bbs</a></td>
+            </tr>
+            </table>
+        </td>
+	</tr>
+</table>
+<include file="Common:foot" />

@@ -1,0 +1,49 @@
+<include file="Common:header" />
+<div class="infomation" style="color:red"><b>说明：</b>请慎重安装第三方微博应用插件，安装第三方应用插件可能导致数据丢失或者其他安全隐患。过多的安装插件可能导致程序运行缓慢以及效率低下。</div><br/>
+<h3>管理应用插件</h3>
+<table class="table" style="margin:5px 0 20px 0">
+<tr>
+    <td width="120px">名称</td>
+    <td width="120px">标识符</td>
+	<td width="120px">类型</td>
+    <td width="120px">开发者</td>
+    <td width="100px">版本</td>
+	<td width="100px">安装量</td>
+    <td>启用</td>
+    <td>&nbsp;</td>
+</tr>
+<php>foreach($plugins as $key=>$val){$type=$val[info][type]=='app'?'应用':'插件';</php>
+    <tr>
+        <td><b><{$val[plus][name]}></b></td>
+        <td><{$key}></td>
+		<td><{:$val[info][type]=='app'?'<font color="#ff0000">应用</font>':'插件'}></td>
+        <td>
+        <php>if($val[info][weburi]){</php>
+            <a href="<{$val[info][weburi]}>" target="_blank"><{$val[info][author]}></a>
+        <php>}else{</php>
+            <{$val[info][author]}>
+        <php>}</php>
+        </td>
+        <td><{$val[info][version]}></td>
+		<td><{:$val[info][type]=='app'?$val[plus][installs]:'-'}></td>
+        <td><{:$val[plus][available]==0?'否':'<font color="#ff0000">是</font>'}></td>
+        <td>
+		<php>if($val['isadmin']==1){</php>
+			<a href="<{:SITE_URL}>/admin.php?s=/Plugins/appsetting/appname/<{$key}>"><{$type}>设置</a> | 
+		<php>}else{</php>
+			<span style="width:60px;display:inline-block"></span>
+		<php>}</php>
+        <php>if($val['plus']['available']==0){</php>
+            <a href="<{:SITE_URL}>/admin.php?s=/Plugins/switchs/appname/<{$key}>/s/1">启用<{$type}></a>
+        <php>}else{</php>
+            <a href="##" onclick="if(confirm('是否要停用该<{$type}>？')){window.location.href='<{:SITE_URL}>/admin.php?s=/Plugins/switchs/appname/<{$key}>/s/0'}">停用<{$type}></a>
+        <php>}</php>
+         | <a href="##" onclick="if(confirm('是否要卸载该<{$type}>？')){window.location.href='<{:SITE_URL}>/admin.php?s=/Plugins/uninstall/appname/<{$key}>'}">卸载<{$type}></a>
+        </td>
+    </tr>
+<php>}</php>
+</table>
+<php>if(!$plugins){</php>
+<div style="margin-left:20px">您还没有安装应用插件，应用插件项目请上传至“/Apps”目录下！</div>
+<php>}</php>
+<include file="Common:foot" />

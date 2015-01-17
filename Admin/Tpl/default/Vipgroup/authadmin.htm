@@ -1,0 +1,47 @@
+<include file="Common:header" />
+<h3>用户认证管理</h3>
+<table class="table" style="margin:5px 0 20px 0">
+    <tr style="font-weight:bold">
+        <td width="100px">用户ID</td>
+		<td width="120px">分组名称</td>
+        <td width="250px">认证说明</td>
+        <td width="100px">QQ号码</td>
+		<td width="100px">电话号码</td>
+		<td width="200px">联系地址</td>
+		<td width="200px">拒绝原因</td>
+        <td>&nbsp;</td>
+    </tr>
+    <php>if($data){foreach($data as $val){</php>
+	<tr>
+        <td><a href="<{:SITE_URL}>/?<{$val[user_name]}>" target="_blank"><{$val['nickname']}></a></td>
+		<td><{$groups[$val['authid']]}></td>
+        <td><{$val['authinfo']}></td>
+        <td><{$val['qq']}></td>
+		<td><{$val['phonenum']}></td>
+		<td><{$val['address']}></td>
+		<td><select id="reasons"><option value="QQ/电话/地址不正确">QQ/电话/地址不正确</option>
+		<option value="认证说明模糊不明确">认证说明模糊不明确</option>
+		<option value="分组不正确">分组不正确</option>
+		<option value="其他原因">其他原因</option>
+		</select></td>
+        <td id="shenhe_<{$val['id']}>"><a href="javascript:void(0);" onclick="shenhe('yes',<{$val['id']}>)">通过</a> | <a href="javascript:void(0);" onclick="shenhe('no',<{$val['id']}>)">拒绝</a></td>
+	</tr>
+    <php>}}</php>
+</table>
+<div class="page"><{$page}></div>
+
+<script type="text/javascript">
+function shenhe(type,id){
+    if (confirm('是否确认该操作？')) {
+		$.ajax({type:"POST",url:"admin.php?s=/Vipgroup/doshenhe",data:"type="+type+"&id="+id+"&reasons="+$('#reasons').val(),
+		success: function(msg){
+			if (msg=="success") {
+				$('#shenhe_'+id).html('操作成功！');
+			} else {
+				alert(msg);
+			}
+		}});
+    }
+}
+</script>
+<include file="Common:foot" />

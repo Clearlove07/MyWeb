@@ -1,0 +1,18 @@
+<include file="Common:header" />
+<h3><{$plugin['name']}> 设置</h3>
+<php>if($appadmin){</php>
+<{$appadmin}>
+<php>}</php> 
+<script type="text/javascript">
+function plswitch(){
+    var isshow=$('#bzset').css('display');
+    if (isshow=='none') {
+        $('#bzset').show();
+        $('#text').html('收起');
+    } else {
+        $('#bzset').hide();
+        $('#text').html('展开');
+    }
+}
+</script>
+<include file="Common:foot" />

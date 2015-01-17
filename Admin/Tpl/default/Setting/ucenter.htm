@@ -1,0 +1,30 @@
+<include file="Common:header" />
+<h3>Ucenter整合</h3>
+<div class="infomation"><b>整合说明：</b><br/>
+1, 建议安装UTF-8编码版本的UCenter<br/>
+2, 在UCenter上创建应用(登录UCenter用户管理中心 -> 应用管理 -> 添加新应用 -> 自定义安装), 需填写的信息包括:<br/>
+&nbsp;&nbsp;&nbsp;- 应用名称: 您的EasyTalk站点名称<br/>
+&nbsp;&nbsp;&nbsp;- 应用的主URL: <b><{:SITE_URL}></b><br/>
+&nbsp;&nbsp;&nbsp;- 应用类型: 其他<br/>
+&nbsp;&nbsp;&nbsp;- 应用接口文件名称: uc.php<br/>
+&nbsp;&nbsp;&nbsp;- 是否开启同步登录: 是<br/>
+&nbsp;&nbsp;&nbsp;- 是否接受通知: 是<br/>
+&nbsp;&nbsp;&nbsp;填写完毕后点击提交，然后复制“应用的UCenter配置信息”<br/>
+3, 将第2步中复制的“应用的UCenter配置信息”粘贴在以下文本框文件中，并点击保存<br/>
+</div><br/>
+<form action='<{:SITE_URL}>/admin.php?s=/Setting/doucenter' method="POST">
+<table class="table" style="margin:5px 0 20px 0">
+<tr>
+    <td width="150px" valign="top">是否开启Ucenter</td>
+    <td><input type="radio" name="openucenter" value="0" <php>if(ET_UC==0){</php>checked<php>}</php>> 否&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="openucenter" value="1" <php>if(ET_UC==1){</php>checked<php>}</php>> 是</td>
+</tr>
+<tr>
+    <td width="150px" valign="top">UCenter配置信息</td>
+    <td><textarea name="ucenterconfig" class="txt_input" style="height:200px;width:500px;font-size:12px"/><{:str_replace(' ','',$file)}></textarea></td>
+</tr>
+</table>
+<input type="hidden" name="reurl" value="Setting/mail">
+<input type="submit" class="button1 submit" value="保存提交">
+</form>
+<include file="Common:foot" />

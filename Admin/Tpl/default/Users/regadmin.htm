@@ -1,0 +1,27 @@
+<include file="Common:header" />
+<h3>注册管理</h3>
+<form action='<{:SITE_URL}>/admin.php?s=/Setting/webset' method="POST">
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px" valign="top">同IP注册次数</td>
+    <td width="330px"><input type="text" name="site[regipnum]" class="txt_input" value="<{$site['regipnum']['contents']}>"></td>
+    <td class="info" valign="top">● 同一个IP24小时内最多注册的次数，0为不限制。</td>
+</tr>
+<tr>
+    <td width="150px" valign="top">开启注册验证码</td>
+    <td width="330px">
+    <input type="radio" name="site[openauthcode]" value="1" <php>if($site['openauthcode']['contents']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[openauthcode]" value="0" <php>if($site['openauthcode']['contents']==0){</php>checked<php>}</php>> 关闭
+    </td>
+    <td class="info" valign="top"></td>
+</tr>
+<tr>
+    <td width="150px" valign="top">禁止使用注册帐号</td>
+    <td width="330px"><textarea name="site[regname]" class="txt_textarea" style="width:300px"><{$site['regname']['contents']}></textarea></td>
+    <td class="info" valign="top">● 屏蔽的注册帐号，系统静态目录名已默认被屏蔽，多个名称请用|隔开。</td>
+</tr>
+</table>
+<input type="hidden" name="reurl" value="Users/regadmin">
+<input type="submit" class="button1 submit" value="保存提交">
+</form>
+<include file="Common:foot" />

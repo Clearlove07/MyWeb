@@ -1,0 +1,92 @@
+<include file="Common:header" />
+<h3>网站开关</h3>
+<form action='<{:SITE_URL}>/admin.php?s=/Setting/webset' method="POST">
+<table class="table" style="margin:5px 0 20px 0;line-height:250%">
+<tr>
+    <td width="150px">网站注册方式</td>
+    <td width="330px">
+    <input type="radio" name="site[closereg]" value="2" <php>if($site['closereg']['contents']==2){</php>checked<php>}</php>> 正常注册&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[closereg]" value="3" <php>if($site['closereg']['contents']==3){</php>checked<php>}</php>> 邀请注册&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[closereg]" value="1" <php>if($site['closereg']['contents']==1){</php>checked<php>}</php>> 关闭注册
+    </td>
+    <td class="info">● <{$site['closereg']['description']}></td>
+</tr>
+<tr>
+    <td>是否关闭网站</td>
+    <td>
+    <input type="radio" name="site[webclose]" value="0" <php>if($site['webclose']['contents']==0){</php>checked<php>}</php>> 开启网站&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[webclose]" value="1" <php>if($site['webclose']['contents']==1){</php>checked<php>}</php>> 关闭网站
+    </td>
+    <td class="info">● <{$site['webclose']['description']}></td>
+</tr>
+<tr>
+    <td>注册邮箱激活</td>
+    <td>
+    <input type="radio" name="site[regmailauth]" value="1" <php>if($site['regmailauth']['contents']==1){</php>checked<php>}</php>> 开启&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[regmailauth]" value="0" <php>if($site['regmailauth']['contents']==0){</php>checked<php>}</php>> 关闭
+    </td>
+    <td class="info">● <{$site['regmailauth']['description']}></td>
+</tr>
+<tr>
+    <td>水印开关</td>
+    <td>
+	<input type="radio" name="site[wateropen]" value="1" <php>if($site['wateropen']['contents']==1){</php>checked<php>}</php>> 开启水印&nbsp;&nbsp;&nbsp;
+	<input type="radio" name="site[wateropen]" value="0" <php>if($site['wateropen']['contents']==0){</php>checked<php>}</php>> 关闭水印
+    </td>
+    <td class="info">● <{$site['wateropen']['description']}></td>
+</tr>
+<tr>
+    <td>开启注册欢迎私信</td>
+    <td>
+    <input type="radio" name="site[openwelpri]" value="0" <php>if($site['openwelpri']['contents']==0){</php>checked<php>}</php>> 关闭&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[openwelpri]" value="1" <php>if($site['openwelpri']['contents']==1){</php>checked<php>}</php>> 开启
+    </td>
+    <td class="info">● <{$site['openwelpri']['description']}></td>
+</tr>
+<tr>
+    <td>开启自动刷新</td>
+    <td>
+    <input type="radio" name="site[autorefresh]" value="0" <php>if($site['autorefresh']['contents']==0){</php>checked<php>}</php>> 关闭&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[autorefresh]" value="1" <php>if($site['autorefresh']['contents']==1){</php>checked<php>}</php>> 开启
+    </td>
+    <td class="info">● <{$site['autorefresh']['description']}></td>
+</tr>
+<tr>
+    <td>强制用户登陆</td>
+    <td>
+    <input type="radio" name="site[mustlogin]" value="0" <php>if($site['mustlogin']['contents']==0){</php>checked<php>}</php>> 关闭&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[mustlogin]" value="1" <php>if($site['mustlogin']['contents']==1){</php>checked<php>}</php>> 开启
+    </td>
+    <td class="info">● <{$site['mustlogin']['description']}></td>
+</tr>
+<tr>
+    <td>开启博客挂件</td>
+    <td>
+    <input type="radio" name="site[widgetopen]" value="0" <php>if($site['widgetopen']['contents']==0){</php>checked<php>}</php>> 关闭&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[widgetopen]" value="1" <php>if($site['widgetopen']['contents']==1){</php>checked<php>}</php>> 开启
+    </td>
+    <td class="info">&nbsp;</td>
+</tr>
+<tr>
+    <td>用户关注听众显示个数</td>
+    <td>
+    <input type="radio" name="site[userfollownum]" value="6" <php>if($site['userfollownum']['contents']==6){</php>checked<php>}</php>> 6个&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[userfollownum]" value="9" <php>if($site['userfollownum']['contents']==9){</php>checked<php>}</php>> 9个&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[userfollownum]" value="12" <php>if($site['userfollownum']['contents']==12){</php>checked<php>}</php>> 12个
+    </td>
+    <td class="info">● 默认显示为6个</td>
+</tr>
+<tr>
+    <td>热门话题显示个数</td>
+    <td>
+    <input type="radio" name="site[hottopicnum]" value="5" <php>if($site['hottopicnum']['contents']==5){</php>checked<php>}</php>> 5个&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[hottopicnum]" value="10" <php>if($site['hottopicnum']['contents']==10){</php>checked<php>}</php>> 10个&nbsp;&nbsp;&nbsp;
+    <input type="radio" name="site[hottopicnum]" value="15" <php>if($site['hottopicnum']['contents']==15){</php>checked<php>}</php>> 15个
+    </td>
+    <td class="info">● 默认显示为10个</td>
+</tr>
+</table>
+<input type="hidden" name="reurl" value="Setting/switchs">
+<input type="submit" class="button1 submit" value="保存提交">
+</form>
+<include file="Common:foot" />
